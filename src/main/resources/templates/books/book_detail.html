@@ -1,11 +1,41 @@
 <div>
+    <a href="/book/list">Back</a>
+    <br>
     {{#book}}
-    <p>{{ title }}</p>
-    <p>{{ resume }}</p>
+    <p>Title: {{ title }}</p>
+    <p>Description: {{ resume }}</p>
     {{#author}}
-        <p>{{ name }} {{ surname }}</p>
+        <p>Autor: {{ name }} {{ surname }}</p>
     {{/author}}
-    <p>{{ editorial }}</p>
-    <p>{{ publicationDate }}</p>
+    <p>Editorial: {{ editorial }}</p>
+    <p>Publication date: {{ publicationDate }}</p>
+    <br>
+    <p>New comment: </p>
+        <form action="/comment/create/{{& id }}" method="post">
+            <label for="owner">Owner:</label><br>
+            <input type="text" id="owner" name="owner"><br>
+            <label for="comment">Comment:</label><br>
+            <textarea id="comment" name="comment"></textarea><br>
+            <label for="points">Points:</label><br>
+            <input type="number" id="points" name="points" min="0" max="5"><br>
+            <br>
+            <input type="submit" value="Create comment">
+        </form>
+    <br>
+    <p>Comments:</p>
+    <ul>
+    {{#commentList}}
+        <li>
+            {{#user}}
+                <p>User: {{ name }} {{ surname }}</p>
+            {{/user}}
+            <p>Comment: {{ comment }}</p>
+            <p>Points: {{ points }}</p>
+        </li>
+    {{/commentList}}
+    </ul>
+    {{^commentList}}
+        <p>Still no comments!</p>
+    {{/commentList}}
     {{/book}}
 </div>

@@ -22,4 +22,20 @@ public class Book {
         this.id = id;
         this.title = title;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", resume='" + resume + '\'' +
+                ", author=" + author +
+                ", editorial='" + editorial + '\'' +
+                ", publicationDate=" + publicationDate +
+                '}';
+    }
+
+    public void addComment(Comment comment) {
+        this.commentList.add(comment);
+    }
 }
