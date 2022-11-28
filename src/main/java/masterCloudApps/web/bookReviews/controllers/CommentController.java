@@ -5,7 +5,10 @@ import masterCloudApps.web.bookReviews.services.CommentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
@@ -30,6 +33,21 @@ public class CommentController {
         RedirectView rv = new RedirectView();
         rv.setContextRelative(true);
         rv.setUrl("/book/details/{id}");
+        return rv;
+    }
+
+    @GetMapping("/delete/{id}")
+    public RedirectView deleteComment(@PathVariable("id") int commentId, @RequestParam int bookId) {
+
+        Comment deletedComment = this.commentService.deleteComment(commentId, bookId);
+
+        logger.debug("Deleting comment " + deletedComment.toString() + " !");
+
+        RedirectView rv = new RedirectView();
+        rv.setContextRelative(true);
+        rv.setUrl("/book/details/" + bookId);
+/*        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setView();*/
         return rv;
     }
 }

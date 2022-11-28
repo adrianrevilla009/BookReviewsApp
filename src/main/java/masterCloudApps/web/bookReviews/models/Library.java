@@ -18,16 +18,6 @@ public class Library {
         this.bookList.add(book);
     }
 
-    public void removeBook(Book book) {
-        Iterator<Book> bookIterator = this.bookList.iterator();
-        while (bookIterator.hasNext()) {
-            Book bookToRemove = bookIterator.next();
-            if (bookToRemove.getId() == book.getId()) {
-                bookIterator.remove();
-            }
-        }
-    }
-
     public Book getById(int bookId) {
         Iterator<Book> bookIterator = this.bookList.iterator();
         while (bookIterator.hasNext()) {

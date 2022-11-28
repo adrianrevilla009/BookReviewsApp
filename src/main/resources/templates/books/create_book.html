@@ -1,16 +1,19 @@
 <div>
-    <p>New book</p>
+    <a href="/book/list" class="link-success">Back</a>
+    <br>
+    <h2>New book</h2>
     <form action="/book/create" method="post">
         <label for="title">Title:</label><br>
         <input type="text" id="title" name="title"><br>
         <label for="resume">Resume:</label><br>
-        <textarea id="resume" name="resume"></textarea><br>
+        <textarea id="resume" name="resume" rows="10"></textarea><br>
         <label for="author">Author:</label><br>
         <input type="text" id="author" name="author"><br>
         <label for="editorial">Editorial:</label><br>
         <input type="text" id="editorial" name="editorial"><br>
         <label for="publicationDate">Publication date:</label><br>
         <input type="date" id="publicationDate" name="publicationDate"><br>
-        <input type="submit" value="Create book">
+        <br>
+        <button type="submit" class="btn btn-primary">Create book</button>
     </form>
 </div>

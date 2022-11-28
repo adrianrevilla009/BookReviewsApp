@@ -1,41 +1,47 @@
-<div>
-    <a href="/book/list">Back</a>
-    <br>
-    {{#book}}
-    <p>Title: {{ title }}</p>
-    <p>Description: {{ resume }}</p>
-    {{#author}}
+<div style="height: 50%;width: 100%;display: flex;">
+    <div style="width: 50%;">
+        <a href="/book/list" class="link-success">Back</a>
+        <br>
+        {{#book}}
+        <p>Title: {{ title }}</p>
+        <p>Description: {{ resume }}</p>
+        {{#author}}
         <p>Autor: {{ name }} {{ surname }}</p>
-    {{/author}}
-    <p>Editorial: {{ editorial }}</p>
-    <p>Publication date: {{ publicationDate }}</p>
-    <br>
-    <p>New comment: </p>
+        {{/author}}
+        <p>Editorial: {{ editorial }}</p>
+        <p>Publication date: {{ publicationDate }}</p>
+        <br>
+    </div>
+    <div style="width: 50%;">
+        <h2>New comment: </h2>
         <form action="/comment/create/{{& id }}" method="post">
             <label for="owner">Owner:</label><br>
             <input type="text" id="owner" name="owner"><br>
             <label for="comment">Comment:</label><br>
-            <textarea id="comment" name="comment"></textarea><br>
+            <textarea id="comment" name="comment" rows="10"></textarea><br>
             <label for="points">Points:</label><br>
             <input type="number" id="points" name="points" min="0" max="5"><br>
             <br>
-            <input type="submit" value="Create comment">
+            <button type="submit" class="btn btn-primary">Create comment</button>
         </form>
-    <br>
-    <p>Comments:</p>
+    </div>
+</div>
+<div>
+    <h2>Comments:</h2>
     <ul>
-    {{#commentList}}
+        {{#commentList}}
         <li>
             {{#user}}
-                <p>User: {{ name }} {{ surname }}</p>
+            <p>User: {{ name }} {{ surname }}</p>
             {{/user}}
             <p>Comment: {{ comment }}</p>
             <p>Points: {{ points }}</p>
+            <a href="/comment/delete/{{& id }}?bookId={{bookId}}" class="link-warning">Delete</a>
         </li>
-    {{/commentList}}
+        {{/commentList}}
     </ul>
     {{^commentList}}
-        <p>Still no comments!</p>
+    <p>Still no comments!</p>
     {{/commentList}}
     {{/book}}
 </div>

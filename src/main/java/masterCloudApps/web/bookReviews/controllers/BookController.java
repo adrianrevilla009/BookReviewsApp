@@ -39,6 +39,7 @@ public class BookController {
         Book book = this.bookService.getBookById(bookId);
 
         model.addAttribute("book", book);
+        model.addAttribute("bookId", book.getId());
 
         logger.debug("Getting book " + bookId + " details!");
         return "books/book_detail";

@@ -29,8 +29,4 @@ public class LibraryFactory {
     public static Book getById(int bookId) {
         return LibraryFactory.getLibrary().getById(bookId);
     }
-
-    public static void removeBook(Book book) {
-        LibraryFactory.getLibrary().removeBook(book);
-    }
 }
