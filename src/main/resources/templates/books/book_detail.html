@@ -16,7 +16,7 @@
         <h2>New comment: </h2>
         <form action="/comment/create/{{& id }}" method="post">
             <label for="owner">Owner:</label><br>
-            <input type="text" id="owner" name="owner"><br>
+            <input type="text" id="owner" name="owner" value="{{loggedUser}}"><br>
             <label for="comment">Comment:</label><br>
             <textarea id="comment" name="comment" rows="10"></textarea><br>
             <label for="points">Points:</label><br>

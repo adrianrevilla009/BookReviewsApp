@@ -3,6 +3,8 @@ package masterCloudApps.web.bookReviews.controllers;
 import masterCloudApps.web.bookReviews.BookReviewsApplication;
 import masterCloudApps.web.bookReviews.models.Book;
 import masterCloudApps.web.bookReviews.models.Library;
+import masterCloudApps.web.bookReviews.models.Session;
+import masterCloudApps.web.bookReviews.models.User;
 import masterCloudApps.web.bookReviews.services.BookService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,10 +19,14 @@ public class BookController {
 
     private BookService bookService;
 
+    private Session loggedUser;
+
     Logger logger = LoggerFactory.getLogger(BookController.class);
 
-    public BookController(BookService bookService) {
+    public BookController(BookService bookService,
+                          Session loggedUser) {
         this.bookService = bookService;
+        this.loggedUser = loggedUser;
     }
 
     @GetMapping("/list")
@@ -40,6 +46,7 @@ public class BookController {
 
         model.addAttribute("book", book);
         model.addAttribute("bookId", book.getId());
+        model.addAttribute("loggedUser", loggedUser.getUserToString());
 
         logger.debug("Getting book " + bookId + " details!");
         return "books/book_detail";

@@ -16,10 +16,13 @@ import org.springframework.web.servlet.view.RedirectView;
 public class CommentController {
 
     private CommentService commentService;
+
+    private Session loggedUser;
     Logger logger = LoggerFactory.getLogger(BookController.class);
 
-    public CommentController(CommentService commentService) {
+    public CommentController(CommentService commentService, Session loggedUser) {
         this.commentService = commentService;
+        this.loggedUser = loggedUser;
     }
 
     @PostMapping("/create/{id}")
@@ -29,6 +32,9 @@ public class CommentController {
         Comment createdComment = this.commentService.createComment(id, owner, comment, points);
 
         logger.debug("Creating comment " + createdComment.toString() + " !");
+
+        loggedUser.setUserName(createdComment.getUser().getName());
+        loggedUser.setUserSurname(createdComment.getUser().getSurname());
 
         RedirectView rv = new RedirectView();
         rv.setContextRelative(true);
@@ -46,8 +52,6 @@ public class CommentController {
         RedirectView rv = new RedirectView();
         rv.setContextRelative(true);
         rv.setUrl("/book/details/" + bookId);
-/*        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setView();*/
         return rv;
     }
 }
